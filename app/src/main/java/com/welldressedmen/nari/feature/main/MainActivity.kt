@@ -1,4 +1,4 @@
-package com.welldressedmen.nari
+package com.welldressedmen.nari.feature.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
