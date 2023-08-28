@@ -13,16 +13,20 @@
         android:theme="@style/Theme.Nari"
         tools:targetApi="31">
         <activity
-            android:name=".feature.main.MainActivity"
+            android:name=".feature.splash.SplashActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Nari">
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".feature.main.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>
