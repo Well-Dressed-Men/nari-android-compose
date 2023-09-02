@@ -31,6 +31,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -75,6 +76,7 @@ fun HomeScreen() {
                         md_theme_light_surface1
                     )
                 )
+                //                color = md_theme_light_surface1
             )
     ) {
         // Top App Bar
@@ -93,6 +95,7 @@ fun HomeScreen() {
                             expanded = !expanded
                         }
                         .padding(12.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = location,
@@ -175,8 +178,9 @@ fun HomeScreen() {
                         painter = painterResource(id = R.drawable.cloud_sunny),
                         contentDescription = null,
                         modifier = Modifier
-                            .height(148.dp)
-                            .scale(1.5f)
+                            .height(120.dp)
+                            .offset(x = (-24).dp)
+                            .scale(2.0f)
                     )
                 }
             }
@@ -194,6 +198,7 @@ fun HomeScreen() {
                 }
             }
 
+            // 시간별 날씨
             item {
                 LazyRow(
                     modifier = Modifier
@@ -217,7 +222,7 @@ fun HomeScreen() {
                             ) {
                                 Text(
                                     text = "오전 ${it}시",
-                                    style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.W500)
+                                    style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.W600)
                                 )
                                 Image(
                                     painter = painterResource(id = R.drawable.sun),
@@ -228,8 +233,8 @@ fun HomeScreen() {
                                         .scale(1.5f)
                                 )
                                 Text(
-                                    text = "21°",
-                                    style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.W500)
+                                    text = " 21°",
+                                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold)
                                 )
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Image(
@@ -241,7 +246,7 @@ fun HomeScreen() {
                                     )
                                     Text(
                                         text = "30%",
-                                        style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.W500)
+                                        style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.W500)
                                     )
                                 }
                             }
@@ -250,6 +255,7 @@ fun HomeScreen() {
                 }
             }
 
+            // 주간 날씨
             item {
                 Column(
                     modifier = Modifier
@@ -274,7 +280,7 @@ fun HomeScreen() {
                         ) {
                             Text(
                                 text = "오늘",
-                                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.W500)
+                                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.W500)
                             )
 
                             Row(
@@ -291,7 +297,7 @@ fun HomeScreen() {
                                     )
                                     Text(
                                         text = "30%",
-                                        style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.W500)
+                                        style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.W500)
                                     )
                                 }
                                 Image(
@@ -312,11 +318,11 @@ fun HomeScreen() {
                                 )
                                 Text(
                                     text = "21°",
-                                    style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.W500)
+                                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500)
                                 )
                                 Text(
                                     text = "19°",
-                                    style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.W500)
+                                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500)
                                 )
                             }
                         }
@@ -332,16 +338,32 @@ fun HomeScreen() {
                             .aspectRatio(1.2f)
                             .background(
                                 color = MaterialTheme.colorScheme.surface,
-                                shape = RoundedCornerShape(16.dp)
+                                shape = RoundedCornerShape(24.dp)
+                            )
+                            .border(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.surfaceVariant,
+                                shape = RoundedCornerShape(24.dp)
                             ),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = "미세먼지", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500))
+                        Text(
+                            text = "미세먼지",
+                            style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.W600)
+                        )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "좋음 23㎍/m³",
                             style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.outline)
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        LinearProgressIndicator(
+                            progress = .4f,
+                            modifier = Modifier
+                                .padding(horizontal = 32.dp)
+                                .height(10.dp)
+                                .clip(RoundedCornerShape(16.dp)),
                         )
                     }
 
@@ -353,21 +375,32 @@ fun HomeScreen() {
                             .aspectRatio(1.2f)
                             .background(
                                 color = MaterialTheme.colorScheme.surface,
-                                shape = RoundedCornerShape(16.dp)
+                                shape = RoundedCornerShape(24.dp)
                             )
                             .border(
                                 width = 1.dp,
                                 color = MaterialTheme.colorScheme.surfaceVariant,
-                                shape = RoundedCornerShape(16.dp)
+                                shape = RoundedCornerShape(24.dp)
                             ),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = "초미세먼지", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500))
+                        Text(
+                            text = "초미세먼지",
+                            style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.W600)
+                        )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "좋음 9㎍/m³",
                             style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.outline)
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        LinearProgressIndicator(
+                            progress = .23f,
+                            modifier = Modifier
+                                .padding(horizontal = 32.dp)
+                                .height(10.dp)
+                                .clip(RoundedCornerShape(16.dp)),
                         )
                     }
                 }
