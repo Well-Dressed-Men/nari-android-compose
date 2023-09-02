@@ -9,17 +9,50 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.welldressedmen.nari.R
 
-val font = FontFamily(
+val noto_sans_kr = FontFamily(
     Font(R.font.noto_sans_kr_regular),
     Font(R.font.noto_sans_kr_medium, FontWeight.W500),
     Font(R.font.noto_sans_kr_bold, FontWeight.Bold)
 )
+
+val spoaqa_han_sans_neo = FontFamily(
+    Font(R.font.spoaqa_han_sans_neo_regular),
+    Font(R.font.spoaqa_han_sans_neo_medium, FontWeight.W500),
+    Font(R.font.spoaqa_han_sans_neo_bold, FontWeight.Bold)
+)
+
+val s_core = FontFamily(
+    Font(R.font.s_core_regular),
+    Font(R.font.s_core_medium, FontWeight.W500),
+    Font(R.font.s_core_bold, FontWeight.Bold)
+)
+
+val jalnan = FontFamily(
+    Font(R.font.jalnan),
+    Font(R.font.jalnan, FontWeight.W500),
+    Font(R.font.jalnan, FontWeight.Bold)
+)
+
+val pretendard = FontFamily(
+    Font(R.font.pretendard_thin, FontWeight.W100),
+    Font(R.font.pretendard_extra_light, FontWeight.W200),
+    Font(R.font.pretendard_light, FontWeight.W300),
+    Font(R.font.pretendard_regular),
+    Font(R.font.pretendard_medium, FontWeight.W500),
+    Font(R.font.pretendard_semibold, FontWeight.W600),
+    Font(R.font.pretendard_bold, FontWeight.Bold),
+    Font(R.font.pretendard_extra_bold, FontWeight.W800),
+    Font(R.font.pretendard_black, FontWeight.W900),
+)
+
+val font = pretendard
+
 // Set of Material typography styles to start with
 val Typography = Typography(
     displayLarge = TextStyle(
         fontFamily = font,
         fontWeight = FontWeight.Normal,
-        fontSize = 57.sp,
+        fontSize = 60.sp,
         lineHeight = 64.sp,
         letterSpacing = 0.0.sp,
         platformStyle = PlatformTextStyle(includeFontPadding = false)
@@ -75,7 +108,7 @@ val Typography = Typography(
     titleMedium = TextStyle(
         fontFamily = font,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
+        fontSize = 18.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.15.sp,
         platformStyle = PlatformTextStyle(includeFontPadding = false)
