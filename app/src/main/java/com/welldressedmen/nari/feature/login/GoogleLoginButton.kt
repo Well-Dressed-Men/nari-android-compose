@@ -1,6 +1,3 @@
-package com.welldressedmen.nari.feature.login
-
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -22,14 +19,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.welldressedmen.nari.R
-import org.w3c.dom.Text
 
 @Composable
-fun GoogleLoginButton(onClick: () -> Unit) {
+fun SignInGoogleButton(onClick: () -> Unit) {
     Surface(
-        modifier = Modifier.clickable(onClick = onClick).fillMaxWidth(),
-        // border = BorderStroke(width = 1.dp, color = Color.LightGray),
-//        color = MaterialTheme.colors.surface,
+        modifier = Modifier
+            .clickable(onClick = onClick)
+            .fillMaxWidth(),
+        color = MaterialTheme.colorScheme.surface,
         shape = MaterialTheme.shapes.small,
         shadowElevation = 10.dp
     ) {
@@ -43,9 +40,22 @@ fun GoogleLoginButton(onClick: () -> Unit) {
                 bottom = 11.dp
             )
         ) {
-            Icon(painter = painterResource(id = com.google.android.gms.base.R.drawable.common_google_signin_btn_icon_light), contentDescription = "Google sign button", tint = Color.Unspecified, modifier = Modifier.size(35.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.logo_google),
+                contentDescription = "Google sign button",
+                tint = Color.Unspecified,
+                modifier = Modifier.size(35.dp)
+            )
             Spacer(modifier = Modifier.width(20.dp))
-            Text(text = "Sign in with Google", style = MaterialTheme.typography.bodyMedium, color = Color.Gray, fontSize = 17.sp, fontWeight = FontWeight.Bold)
+            Text(
+                text = "Sign in with Google",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.Gray,
+                fontSize = 17.sp,
+                fontWeight = FontWeight.Bold
+            )
         }
+
     }
+
 }

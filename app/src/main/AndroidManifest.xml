@@ -20,7 +20,10 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Nari">
-
+        </activity>
+        <activity
+            android:name=".feature.onboard.OnBoardActivity"
+            android:exported="true">
         </activity>
         <activity
             android:name=".feature.login.LoginActivity"
