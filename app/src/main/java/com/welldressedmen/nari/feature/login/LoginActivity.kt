@@ -6,19 +6,16 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.welldressedmen.nari.R
 import com.welldressedmen.nari.feature.onboard.OnBoardActivity
 
 class LoginActivity : ComponentActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 1313
-    private lateinit var user : User
+    private var user = User("0", "default_name", "default_eamil", "default_type")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,8 +52,13 @@ class LoginActivity : ComponentActivity() {
                 Log.d("google_login", "s ${account.account}")
                 Log.d("google_login", "s ${account.displayName}")
 
+                user.name = account.displayName.toString()
+                user.email = account.email.toString()
+                user.id = account.id.toString()
+                user.type = account.account?.type.toString()
+
                 val intent = Intent(this@LoginActivity, OnBoardActivity::class.java)
-                Log.d("intent_success", intent.toString())
+                intent.putExtra("id", user.id)
                 startActivity(intent)
 
             } catch (e: ApiException) {

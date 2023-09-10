@@ -9,12 +9,12 @@ import androidx.compose.ui.Modifier
 import com.welldressedmen.nari.feature.main.Greeting
 
 @Composable
-fun OnBoardScreen() {
+fun OnBoardScreen(name: String) {
     Surface(
         modifier = Modifier.fillMaxSize(), // = match parent
         color = MaterialTheme.colorScheme.background
     ) {
-        Greeting("Android") // Hello Android 라는 텍스트를 넣는다.
+        Greeting(name) // Hello Android 라는 텍스트를 넣는다.
     }
 }
 

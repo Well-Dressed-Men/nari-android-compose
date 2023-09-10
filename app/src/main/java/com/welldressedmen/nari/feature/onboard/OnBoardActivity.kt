@@ -10,9 +10,13 @@ class OnBoardActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("intent_success", "intent success")
-
-        setContent {
-            OnBoardScreen()
+        
+        if (intent.hasExtra("id")) {
+            val userName = intent.getStringExtra("id")
+            if (userName == null)
+                setContent { OnBoardScreen(name = "Android") }
+            else
+                setContent{ OnBoardScreen(name = userName)}
         }
     }
 }
