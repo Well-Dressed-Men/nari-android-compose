@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nari"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".feature.main.home.LocationActivity"
             android:exported="false"
@@ -21,6 +26,14 @@
             android:name=".feature.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashScreenTheme">
+        </activity>
+        <activity
+            android:name=".feature.onboard.OnBoardActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".feature.login.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

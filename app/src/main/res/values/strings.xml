@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Nari</string>
+    <string name="default_android_client_id">638891588239-bq3e2e40fsbaf3168jbsilif4k43okcu.apps.googleusercontent.com</string>
     <string name="bnb_home">home</string>
     <string name="bnb_board">board</string>
     <string name="bnb_profile">profile</string>
