@@ -13,6 +13,11 @@
         android:theme="@style/Theme.Nari"
         tools:targetApi="31">
         <activity
+            android:name=".feature.main.home.LocationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_loaction"
+            android:theme="@style/Theme.Nari" />
+        <activity
             android:name=".feature.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashScreenTheme">
@@ -22,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".feature.main.MainActivity"
             android:exported="true"

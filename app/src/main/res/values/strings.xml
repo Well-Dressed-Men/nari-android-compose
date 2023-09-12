@@ -3,4 +3,5 @@
     <string name="bnb_home">home</string>
     <string name="bnb_board">board</string>
     <string name="bnb_profile">profile</string>
+    <string name="title_activity_loaction">LoactionActivity</string>
 </resources>
