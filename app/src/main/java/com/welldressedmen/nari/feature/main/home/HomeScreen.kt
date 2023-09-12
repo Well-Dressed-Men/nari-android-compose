@@ -1,9 +1,13 @@
 package com.welldressedmen.nari.feature.main.home
 
+import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -26,10 +30,14 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -45,10 +53,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.welldressedmen.nari.R
 import com.welldressedmen.nari.ui.theme.md_theme_light_primary
 import com.welldressedmen.nari.ui.theme.md_theme_light_surface
@@ -56,6 +68,9 @@ import com.welldressedmen.nari.ui.theme.md_theme_light_surface1
 
 @Composable
 fun HomeScreen() {
+
+    val context = LocalContext.current
+
     val test_location = arrayOf(
         "강희남 집",
         "김태환 집",
@@ -76,7 +91,7 @@ fun HomeScreen() {
                         md_theme_light_surface1
                     )
                 )
-                //                color = md_theme_light_surface1
+//                                color = md_theme_light_surface2
             )
     ) {
         // Top App Bar
@@ -109,7 +124,11 @@ fun HomeScreen() {
                         contentDescription = "spinner drop down icon"
                     )
 
-                    DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                    DropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false },
+                        modifier = Modifier.background(color = MaterialTheme.colorScheme.surface)
+                    ) {
                         test_location.forEach { city ->
                             DropdownMenuItem(onClick = {
                                 expanded = false
@@ -130,18 +149,23 @@ fun HomeScreen() {
                                 Text(text = city, style = style)
                             }
                         }
+                        DropdownMenuItem(onClick = {
+                            // 지역 추가 화면으로 전환
+                        }) {
+
+                        }
                     }
                 }
 
-                Icon(
-                    imageVector = Icons.Filled.Notifications,
-                    contentDescription = null,
+                IconButton(
+                    onClick = {
+                              context.startActivity(Intent(context, LocationActivity::class.java))
+                    },
                     modifier = Modifier
-                        .clickable {
-
-                        }
-                        .padding(12.dp)
-                )
+                        .indication(remember { MutableInteractionSource() }, rememberRipple(radius = 64.dp, bounded = true))
+                ) {
+                    Icon(imageVector = ImageVector.vectorResource(id = R.drawable.add_32px), contentDescription = null)
+                }
             }
         }
 
@@ -166,7 +190,7 @@ fun HomeScreen() {
                         Text(text = "24°", style = MaterialTheme.typography.displayLarge)
                         Text(
                             text = "구름 많음",
-                            style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
+                            style = MaterialTheme.typography.bodyLarge.copy(fontSize = 18.sp, fontWeight = FontWeight.Bold)
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
@@ -234,19 +258,19 @@ fun HomeScreen() {
                                 )
                                 Text(
                                     text = " 21°",
-                                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold)
+                                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W600)
                                 )
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Image(
                                         painter = painterResource(id = R.drawable.rain_chance_30_24px),
                                         contentDescription = null,
                                         modifier = Modifier
-                                            .height(8.dp)
-                                            .width(8.dp)
+                                            .height(12.dp)
+                                            .width(12.dp)
                                     )
                                     Text(
                                         text = "30%",
-                                        style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.W500)
+                                        style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.W500)
                                     )
                                 }
                             }
@@ -280,7 +304,7 @@ fun HomeScreen() {
                         ) {
                             Text(
                                 text = "오늘",
-                                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.W500)
+                                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.W600)
                             )
 
                             Row(
@@ -292,12 +316,12 @@ fun HomeScreen() {
                                         painter = painterResource(id = R.drawable.rain_chance_30_24px),
                                         contentDescription = null,
                                         modifier = Modifier
-                                            .height(8.dp)
-                                            .width(8.dp)
+                                            .height(12.dp)
+                                            .width(12.dp)
                                     )
                                     Text(
                                         text = "30%",
-                                        style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.W500)
+                                        style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.W500)
                                     )
                                 }
                                 Image(
@@ -318,11 +342,11 @@ fun HomeScreen() {
                                 )
                                 Text(
                                     text = "21°",
-                                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500)
+                                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W600)
                                 )
                                 Text(
                                     text = "19°",
-                                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500)
+                                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W600)
                                 )
                             }
                         }
