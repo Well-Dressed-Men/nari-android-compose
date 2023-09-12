@@ -69,4 +69,18 @@ dependencies {
 
     // oauth2.0
     implementation("com.google.android.gms:play-services-auth:20.2.0")
+
+    // retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // preferences
+    implementation ("com.louiscad.splitties:splitties-activities:3.0.0")
+    implementation ("com.louiscad.splitties:splitties-preferences:3.0.0")
+    implementation ("com.louiscad.splitties:splitties-material-colors:3.0.0")
+    implementation ("com.louiscad.splitties:splitties-fragments:3.0.0")
+    implementation ("com.louiscad.splitties:splitties-fragmentargs:3.0.0")
+    implementation ("com.louiscad.splitties:splitties-resources:3.0.0")
 }

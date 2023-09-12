@@ -6,16 +6,20 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.welldressedmen.nari.feature.onboard.OnBoardActivity
+import com.welldressedmen.nari.data.db.entity.User
+import com.welldressedmen.nari.data.remote.viewmodel.UserViewModel
 
 class LoginActivity : ComponentActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 1313
-    private var user = User("0", "default_name", "default_eamil", "default_type")
+    private var user = User("0", "default_name", "default_eamil")
+    private val userViewModel: UserViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,7 +59,13 @@ class LoginActivity : ComponentActivity() {
                 user.name = account.displayName.toString()
                 user.email = account.email.toString()
                 user.id = account.id.toString()
-                user.type = account.account?.type.toString()
+//                user.type = account.account?.type.toString()
+                val provider = account.displayName.toString()
+                val providerId = account.account?.type.toString()
+                val email = account.email.toString()
+                val name = account.displayName.toString()
+
+                userViewModel.login(provider, providerId, email, name)
 
                 val intent = Intent(this@LoginActivity, OnBoardActivity::class.java)
                 intent.putExtra("id", user.id)
