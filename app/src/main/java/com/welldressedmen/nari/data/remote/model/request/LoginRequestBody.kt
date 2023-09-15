@@ -1,4 +1,4 @@
-package com.welldressedmen.nari.data.remote.request
+package com.welldressedmen.nari.data.remote.model.request
 
 import org.json.JSONObject
 
