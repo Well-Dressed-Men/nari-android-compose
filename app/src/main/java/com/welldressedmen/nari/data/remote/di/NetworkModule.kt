@@ -20,7 +20,7 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideBaseURL(): String {
-        return "http://13.124.160.12:8080/"
+        return "http://43.201.58.155:8080/"
     }
 
     @Singleton

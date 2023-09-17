@@ -10,7 +10,6 @@ import com.welldressedmen.nari.domain.UserUseCase
 import com.welldressedmen.nari.preferences.UserPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -22,11 +21,12 @@ class LoginViewModel @Inject constructor(
     val state = mutableStateOf<UserUiState>(Loading)
 
     fun login(provider: String, providerId : String, email : String, name : String) = viewModelScope.launch {
-        userUseCase(provider, providerId, email, name).collect(::handleResponse)
+        withContext(Dispatchers.IO) {
+            userUseCase(provider, providerId, email, name).collect(::handleResponse)
+        }
     }
 
-    private suspend fun handleResponse(it: Resource<LoginResponse>) = withContext(
-        Dispatchers.Main) {
+    private suspend fun handleResponse(it: Resource<LoginResponse>) = withContext(Dispatchers.Main) {
         when (it.status) {
             Resource.Status.LOADING -> state.value = Loading
             Resource.Status.SUCCESS -> {
