@@ -29,6 +29,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.welldressedmen.nari.R
+import com.welldressedmen.nari.feature.common.LoadingBar
 
 @Composable
 fun LoginScreen(loginViewModel: LoginViewModel = hiltViewModel()) {
@@ -48,6 +49,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = hiltViewModel()) {
                 Alignment.BottomCenter
             )
             Spacer(modifier = Modifier.size(100.dp))
+
             GoogleLogin(loginViewModel)
         }
     }
@@ -97,6 +99,7 @@ fun GoogleLogin(vm: LoginViewModel) {
                 Log.d("google_login", "s ${state.user?.jwtToken}")
             }
             is Loading -> {
+                LoadingBar()
                 Log.d("google_login", "s Loading")
             }
             is UserUiStateError -> {
