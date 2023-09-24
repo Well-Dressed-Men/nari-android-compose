@@ -1,14 +1,17 @@
 package com.welldressedmen.nari.data.remote.repository
 
-import com.welldressedmen.nari.data.remote.RetrofitClient
-import com.welldressedmen.nari.data.remote.request.LoginRequestBody
-import com.welldressedmen.nari.data.remote.response.LoginResponse
+import com.welldressedmen.nari.data.remote.api.ApiService
+import com.welldressedmen.nari.data.remote.model.request.LoginRequestBody
+import com.welldressedmen.nari.data.remote.model.response.LoginResponse
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import org.json.JSONObject
-import retrofit2.Response
+import javax.inject.Inject
 
-class UserRepository {
-    private val userService = RetrofitClient.userService
-    suspend fun login(provider: String, providerId : String, email : String, name : String) : Response<LoginResponse> {
+@ActivityRetainedScoped
+class UserRepository @Inject constructor(
+    private val apiService: ApiService
+) {
+    suspend fun login(provider: String, providerId : String, email : String, name : String) : LoginResponse {
         val loginJson = JSONObject()
         loginJson.put("provider", provider)
         loginJson.put("providerId", providerId)
@@ -16,6 +19,6 @@ class UserRepository {
         loginJson.put("name", name)
         val loginRequestBody = LoginRequestBody(loginJson)
 
-        return userService.login(loginRequestBody).execute()
+        return apiService.login(loginRequestBody)
     }
 }
