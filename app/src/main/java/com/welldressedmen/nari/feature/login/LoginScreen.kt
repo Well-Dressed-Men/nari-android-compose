@@ -29,7 +29,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.welldressedmen.nari.R
-import com.welldressedmen.nari.feature.common.LoadingBar
 
 @Composable
 fun LoginScreen(loginViewModel: LoginViewModel = hiltViewModel()) {
@@ -100,7 +99,7 @@ fun GoogleLogin(vm: LoginViewModel) {
                 // 여기에 화면 전환
             }
             is Loading -> {
-                LoadingBar()
+//                LoadingBar()
                 Log.d("google_login", "s Loading")
             }
             is UserUiStateError -> {
