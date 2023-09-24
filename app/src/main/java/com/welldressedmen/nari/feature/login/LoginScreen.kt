@@ -97,6 +97,7 @@ fun GoogleLogin(vm: LoginViewModel) {
             is UserUiStateReady -> {
                 Text(text = state.user?.jwtToken.toString())
                 Log.d("google_login", "s ${state.user?.jwtToken}")
+                // 여기에 화면 전환
             }
             is Loading -> {
                 LoadingBar()
