@@ -2,7 +2,7 @@ package com.welldressedmen.nari.data.remote.model.response
 
 import com.google.gson.annotations.SerializedName
 
-data class HomeResponse(
+data class InfoResponse(
     @SerializedName("weatherResponse")
     val weatherResponse: WeatherResponse,
     @SerializedName("version")
