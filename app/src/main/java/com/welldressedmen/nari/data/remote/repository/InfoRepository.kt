@@ -1,7 +1,6 @@
 package com.welldressedmen.nari.data.remote.repository
 
 import com.welldressedmen.nari.data.remote.api.ApiService
-import com.welldressedmen.nari.data.remote.model.response.InfoResponse
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
 
@@ -14,9 +13,9 @@ class InfoRepository @Inject constructor(
         regionId: Short,
         nx: Short,
         ny: Short,
-        midLandCode: String,
         midTempCode: String,
+        midLandCode: String,
         stationName: String,
         ver: String,
-    ): InfoResponse = apiService.getTotalInfo(regionId, nx, ny, midLandCode, midTempCode, stationName, ver)
+    ) = apiService.getTotalInfo(regionId, nx, ny, midTempCode, midLandCode, stationName, ver)
 }

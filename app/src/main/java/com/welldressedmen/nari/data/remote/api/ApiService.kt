@@ -4,21 +4,22 @@ import com.welldressedmen.nari.data.remote.model.request.LoginRequestBody
 import com.welldressedmen.nari.data.remote.model.response.InfoResponse
 import com.welldressedmen.nari.data.remote.model.response.LoginResponse
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @POST("oauth/jwt/google")
     suspend fun login(@Body requestBody: LoginRequestBody): LoginResponse
 
-    @POST("api/v1/weather-clothing-infos") // TODO: Change address
+    @GET("api/v1/weather-clothing-infos")
     suspend fun getTotalInfo(
-        @Path("regionId") regionId: Short,
-        @Path("nx") nx: Short,
-        @Path("ny") ny: Short,
-        @Path("midLandCode") midLandCode: String,
-        @Path("midTempCode") midTempCode: String,
-        @Path("stationName") stationName: String,
-        @Path("ver") ver: String
+        @Query("regionId") regionId: Short,
+        @Query("nx") nx: Short,
+        @Query("ny") ny: Short,
+        @Query("midTempCode") midTempCode: String,
+        @Query("midLandCode") midLandCode: String,
+        @Query("stationName") stationName: String,
+        @Query("ver") ver: String
     ): InfoResponse
 }

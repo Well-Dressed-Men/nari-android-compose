@@ -19,17 +19,26 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     val state = mutableStateOf<HomeUiState>(Loading)
 
+    init {
+        getTotalInfo()
+    }
+    fun getTotalInfo() = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            infoUseCase().collect(::handleResponse)
+        }
+    }
+
     fun getTotalInfo(
         regionId: Short,
         nx: Short,
         ny: Short,
-        midLandCode: String,
         midTempCode: String,
+        midLandCode: String,
         stationName: String,
         ver: String,
     ) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
-            infoUseCase(regionId, nx, ny, midLandCode, midTempCode, stationName, ver).collect(::handleResponse)
+            infoUseCase(regionId, nx, ny, midTempCode, midLandCode, stationName, ver).collect(::handleResponse)
         }
     }
 
