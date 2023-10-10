@@ -6,20 +6,17 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.welldressedmen.nari.data.db.entity.User
-import com.welldressedmen.nari.data.remote.viewmodel.UserViewModel
 import com.welldressedmen.nari.feature.onboard.OnBoardActivity
 
 class LoginActivity : ComponentActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 1313
     private var user = User("0", "default_name", "default_eamil")
-    private val userViewModel: UserViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

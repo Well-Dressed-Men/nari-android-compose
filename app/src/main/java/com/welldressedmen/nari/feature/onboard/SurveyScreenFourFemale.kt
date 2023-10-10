@@ -29,12 +29,11 @@ import androidx.compose.ui.unit.sp
 import com.welldressedmen.nari.R
 
 @Composable
-fun SurveyScreenTwo(onClick: () -> Unit) {
+fun SurveyScreenFourFemale(onClick: () -> Unit) {
     val clicked1 = remember { mutableStateOf(false) }
     val clicked2 = remember { mutableStateOf(false) }
     val clicked3 = remember { mutableStateOf(false) }
     val clicked4 = remember { mutableStateOf(false) }
-    val clicked5 = remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -61,7 +60,7 @@ fun SurveyScreenTwo(onClick: () -> Unit) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "추위를 많이 타시나요?",
+                            text = "더위를 많이 타시나요?",
                             fontSize = 25.sp,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center
@@ -77,12 +76,11 @@ fun SurveyScreenTwo(onClick: () -> Unit) {
                 Box() {
                     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                         //items(1){
-                            Button(
+                        Button(
                             onClick = { clicked1.value = !clicked1.value
                                 clicked2.value = false
                                 clicked3.value = false
-                                clicked4.value = false
-                                clicked5.value = false},
+                                clicked4.value = false},
                             colors = ButtonDefaults.buttonColors(
                                 if (clicked1.value) Color(0xFF42A0FB) else Color.White
                             ),
@@ -92,14 +90,13 @@ fun SurveyScreenTwo(onClick: () -> Unit) {
                             shape = RoundedCornerShape(16.dp),
                             contentPadding = PaddingValues(16.dp)
                         ) {
-                            Text(text = "매우 그렇지 않다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            Text(text = "마른", fontSize = 20.sp, fontWeight = FontWeight.Bold)
                         }
                         Button(
                             onClick = { clicked2.value = !clicked2.value;
                                 clicked1.value = false
                                 clicked3.value = false
-                                clicked4.value = false
-                                clicked5.value = false},
+                                clicked4.value = false},
                             colors = ButtonDefaults.buttonColors(
                                 if (clicked2.value) Color(0xFF42A0FB) else Color.White
                             ),
@@ -109,14 +106,13 @@ fun SurveyScreenTwo(onClick: () -> Unit) {
                             shape = RoundedCornerShape(16.dp),
                             contentPadding = PaddingValues(16.dp)
                         ) {
-                            Text(text = "그렇지 않다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            Text(text = "보통", fontSize = 20.sp, fontWeight = FontWeight.Bold)
                         }
                         Button(
                             onClick = { clicked3.value = !clicked3.value;
                                 clicked2.value = false
                                 clicked1.value = false
-                                clicked4.value = false
-                                clicked5.value = false},
+                                clicked4.value = false},
                             colors = ButtonDefaults.buttonColors(
                                 if (clicked3.value) Color(0xFF42A0FB) else Color.White
                             ),
@@ -126,14 +122,13 @@ fun SurveyScreenTwo(onClick: () -> Unit) {
                             shape = RoundedCornerShape(16.dp),
                             contentPadding = PaddingValues(16.dp)
                         ) {
-                            Text(text = "보통이다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            Text(text = "통통", fontSize = 20.sp, fontWeight = FontWeight.Bold)
                         }
                         Button(
                             onClick = { clicked4.value = !clicked4.value;
                                 clicked2.value = false
                                 clicked3.value = false
-                                clicked1.value = false
-                                clicked5.value = false},
+                                clicked1.value = false},
                             colors = ButtonDefaults.buttonColors(
                                 if (clicked4.value) Color(0xFF42A0FB) else Color.White
                             ),
@@ -143,24 +138,7 @@ fun SurveyScreenTwo(onClick: () -> Unit) {
                             shape = RoundedCornerShape(16.dp),
                             contentPadding = PaddingValues(16.dp)
                         ) {
-                            Text(text = "그렇다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                        }
-                        Button(
-                            onClick = { clicked5.value = !clicked5.value;
-                                clicked2.value = false
-                                clicked3.value = false
-                                clicked4.value = false
-                                clicked1.value = false},
-                            colors = ButtonDefaults.buttonColors(
-                                if (clicked5.value) Color(0xFF42A0FB) else Color.White
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                            shape = RoundedCornerShape(16.dp),
-                            contentPadding = PaddingValues(16.dp)
-                        ) {
-                            Text(text = "매우 그렇다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            Text(text = "근육있는", fontSize = 20.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }

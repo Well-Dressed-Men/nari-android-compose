@@ -22,7 +22,11 @@ enum class TestScreen() {
     Zero,
     One,
     Two,
-    Three
+    Three,
+    FourMale,
+    FourFemale,
+    FiveMale,
+    FiveFemale
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -60,7 +64,10 @@ fun NavigationGraph(navController: NavHostController, innerPadding: PaddingValue
             SurveyScreenTwo { actions.goToSurveyThreeScreen.invoke() }
         }
         composable(route = TestScreen.Three.name) {
-            SurveyScreenThree { actions.goToSurveyTwoScreen.invoke() }
+            SurveyScreenThree { actions.goToSurveyFourMaleScreen.invoke() }
+        }
+        composable(route = TestScreen.FourMale.name) {
+            SurveyScreenThree { actions.goToSurveyFourFemaleScreen.invoke() }
         }
     }
 }
@@ -76,5 +83,14 @@ class OnBoardAction(private val navController: NavHostController) {
 
     val goToSurveyThreeScreen: () -> Unit = {
         navController.navigate(TestScreen.Three.name)
+    }
+    val goToSurveyFourMaleScreen: () -> Unit = {
+        navController.navigate(TestScreen.FourMale.name)
+    }
+    val goToSurveyFourFemaleScreen: () -> Unit = {
+        navController.navigate(TestScreen.FourFemale.name)
+    }
+    val goToSurveyFiveMaleScreen: () -> Unit = {
+        navController.navigate(TestScreen.FiveFemale.name)
     }
 }

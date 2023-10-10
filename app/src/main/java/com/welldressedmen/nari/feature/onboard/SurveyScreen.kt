@@ -38,7 +38,6 @@ fun SurveyScreen(onClick: () -> Unit) {
                 .fillMaxWidth(), contentAlignment = Alignment.Center
         ) {
             Column(
-
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally
