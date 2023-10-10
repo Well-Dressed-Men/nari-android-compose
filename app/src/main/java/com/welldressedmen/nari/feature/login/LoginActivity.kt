@@ -11,9 +11,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.welldressedmen.nari.feature.onboard.OnBoardActivity
 import com.welldressedmen.nari.data.db.entity.User
 import com.welldressedmen.nari.data.remote.viewmodel.UserViewModel
+import com.welldressedmen.nari.feature.onboard.OnBoardActivity
 
 class LoginActivity : ComponentActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -65,10 +65,9 @@ class LoginActivity : ComponentActivity() {
                 val email = account.email.toString()
                 val name = account.displayName.toString()
 
-                userViewModel.login(provider, providerId, email, name)
+//                userViewModel.login(provider, providerId, email, name)
 
                 val intent = Intent(this@LoginActivity, OnBoardActivity::class.java)
-                intent.putExtra("id", user.id)
                 startActivity(intent)
 
             } catch (e: ApiException) {
