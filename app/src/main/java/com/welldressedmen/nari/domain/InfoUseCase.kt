@@ -19,7 +19,7 @@ class InfoUseCase @Inject constructor(
         flow<Resource<InfoResponse>> {
             try {
                 emit(Resource.loading())
-                val info = repository.getTotalInfo(1, 60, 128, "11B00000", "11B10101", "중구", "1.0" )
+                val info = repository.getTotalInfo(1, 60, 127, "11B00000", "11B10101", "중구", "1.0" )
                 Log.d("InfoUseCase", "invoke: $info")
                 emit(Resource.success(info))
             } catch (e: Throwable) {
