@@ -37,7 +37,29 @@ data class WeatherUltraShort(
     val humid: Int,
     @SerializedName("sky")
     val sky: Int
-)
+) {
+    fun getTemp(): String = temp.toString().dropLast(1) + "°"
+    fun getSky(): String {
+        if (sky < 10) {
+            return when (sky) {
+                1 -> "비"
+                2 -> "비/눈"
+                3 -> "눈"
+                4 -> "소나기"
+                5 -> "빗방울"
+                6 -> "빗방울/눈날림"
+                7 -> "눈날림"
+                else -> "알수없음"
+            }
+        }
+        return when (sky / 10) {
+            1 -> "맑음"
+            3 -> "구름많음"
+            4 -> "흐림"
+            else -> "알수없음"
+        }
+    }
+}
 
 data class WeatherShort(
     @SerializedName("fcstDate")
