@@ -70,7 +70,7 @@ fun SurveyScreenFive(vm: OnBoardViewModel, onClick: () -> Unit) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "좋아하는 스티일이 뭔가요?",
+                            text = "좋아하는 스타일이 뭔가요?",
                             fontSize = 25.sp,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center
