@@ -14,8 +14,10 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,12 +31,17 @@ import androidx.compose.ui.unit.sp
 import com.welldressedmen.nari.R
 
 @Composable
-fun SurveyScreenTwo(onClick: () -> Unit) {
-    val clicked1 = remember { mutableStateOf(false) }
-    val clicked2 = remember { mutableStateOf(false) }
-    val clicked3 = remember { mutableStateOf(false) }
-    val clicked4 = remember { mutableStateOf(false) }
-    val clicked5 = remember { mutableStateOf(false) }
+fun SurveyScreenTwo(vm: OnBoardViewModel, onClick: () -> Unit) {
+
+    val answer = arrayOf(
+        "매우 그렇지 않다",
+        "그렇지 않다",
+        "보통이다",
+        "그렇다",
+        "매우 그렇다"
+    )
+
+    var select: String by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -48,10 +55,14 @@ fun SurveyScreenTwo(onClick: () -> Unit) {
             //    .background(Color.Cyan)
             , contentAlignment = Alignment.Center
         ) {
-            Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                Box(modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
                     //    .background(Color.Magenta)
                 ) {
                     Column(
@@ -74,93 +85,25 @@ fun SurveyScreenTwo(onClick: () -> Unit) {
                         )
                     }
                 }
-                Box() {
+                Box {
                     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        //items(1){
+                        answer.forEach {
                             Button(
-                            onClick = { clicked1.value = !clicked1.value
-                                clicked2.value = false
-                                clicked3.value = false
-                                clicked4.value = false
-                                clicked5.value = false},
-                            colors = ButtonDefaults.buttonColors(
-                                if (clicked1.value) Color(0xFF42A0FB) else Color.White
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                            shape = RoundedCornerShape(16.dp),
-                            contentPadding = PaddingValues(16.dp)
-                        ) {
-                            Text(text = "매우 그렇지 않다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                        }
-                        Button(
-                            onClick = { clicked2.value = !clicked2.value;
-                                clicked1.value = false
-                                clicked3.value = false
-                                clicked4.value = false
-                                clicked5.value = false},
-                            colors = ButtonDefaults.buttonColors(
-                                if (clicked2.value) Color(0xFF42A0FB) else Color.White
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                            shape = RoundedCornerShape(16.dp),
-                            contentPadding = PaddingValues(16.dp)
-                        ) {
-                            Text(text = "그렇지 않다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                        }
-                        Button(
-                            onClick = { clicked3.value = !clicked3.value;
-                                clicked2.value = false
-                                clicked1.value = false
-                                clicked4.value = false
-                                clicked5.value = false},
-                            colors = ButtonDefaults.buttonColors(
-                                if (clicked3.value) Color(0xFF42A0FB) else Color.White
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                            shape = RoundedCornerShape(16.dp),
-                            contentPadding = PaddingValues(16.dp)
-                        ) {
-                            Text(text = "보통이다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                        }
-                        Button(
-                            onClick = { clicked4.value = !clicked4.value;
-                                clicked2.value = false
-                                clicked3.value = false
-                                clicked1.value = false
-                                clicked5.value = false},
-                            colors = ButtonDefaults.buttonColors(
-                                if (clicked4.value) Color(0xFF42A0FB) else Color.White
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                            shape = RoundedCornerShape(16.dp),
-                            contentPadding = PaddingValues(16.dp)
-                        ) {
-                            Text(text = "그렇다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                        }
-                        Button(
-                            onClick = { clicked5.value = !clicked5.value;
-                                clicked2.value = false
-                                clicked3.value = false
-                                clicked4.value = false
-                                clicked1.value = false},
-                            colors = ButtonDefaults.buttonColors(
-                                if (clicked5.value) Color(0xFF42A0FB) else Color.White
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                            shape = RoundedCornerShape(16.dp),
-                            contentPadding = PaddingValues(16.dp)
-                        ) {
-                            Text(text = "매우 그렇다", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                                onClick = {
+                                    select = it
+                                    vm.userCold = it
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    if (select == it) Color(0xFF42A0FB) else Color.White
+                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp),
+                                shape = RoundedCornerShape(16.dp),
+                                contentPadding = PaddingValues(16.dp)
+                            ) {
+                                Text(text = it, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            }
                         }
                     }
                 }

@@ -1,6 +1,6 @@
 package com.welldressedmen.nari.data.remote.model.request
 
-import org.json.JSONObject
+import com.google.gson.JsonObject
 
 //data class Temp(
 //    val provider : String,
@@ -10,5 +10,5 @@ import org.json.JSONObject
 //)
 
 data class LoginRequestBody (
-    val profileObj : JSONObject
+    val profileObj : JsonObject
 )

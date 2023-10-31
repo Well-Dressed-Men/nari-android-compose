@@ -1,5 +1,6 @@
 package com.welldressedmen.nari.feature.onboard
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,13 +15,12 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
@@ -31,17 +31,15 @@ import androidx.compose.ui.unit.sp
 import com.welldressedmen.nari.R
 
 @Composable
-fun SurveyScreenThree(vm: OnBoardViewModel, onClick: () -> Unit) {
+fun SurveyScreenFive(vm: OnBoardViewModel, onClick: () -> Unit) {
+
+    val context = LocalContext.current
 
     val answer = arrayOf(
-        "매우 그렇지 않다",
-        "그렇지 않다",
-        "보통이다",
-        "그렇다",
-        "매우 그렇다"
+        "캐주얼", "스트릿", "미니멀", "클래식/오피스룩", "큐티/러블리", "모던시크", "키치"
     )
 
-    var select: String by remember { mutableStateOf("") }
+    var select = remember { mutableStateMapOf<String, Boolean>() }
 
     Column(
         modifier = Modifier
@@ -72,7 +70,7 @@ fun SurveyScreenThree(vm: OnBoardViewModel, onClick: () -> Unit) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "더위를 많이 타시나요?",
+                            text = "좋아하는 스티일이 뭔가요?",
                             fontSize = 25.sp,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center
@@ -90,11 +88,16 @@ fun SurveyScreenThree(vm: OnBoardViewModel, onClick: () -> Unit) {
                         answer.forEach {
                             Button(
                                 onClick = {
-                                    select = it
-                                    vm.userHot = it
+                                    if (select[it] == null) {
+                                        select[it] = true
+                                    } else {
+                                        select[it] = !select[it]!!
+                                    }
+                                    vm.userPreferences = select.filter { it.value }.keys.joinToString(" ")
+                                    Log.d("SurveyScreenFive", "vm.userPreferences: ${vm.userPreferences}")
                                 },
                                 colors = ButtonDefaults.buttonColors(
-                                    if (select == it) Color(0xFF42A0FB) else Color.White
+                                    if (select[it] != null && select[it]!!) Color(0xFF42A0FB) else Color.White
                                 ),
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -102,11 +105,7 @@ fun SurveyScreenThree(vm: OnBoardViewModel, onClick: () -> Unit) {
                                 shape = RoundedCornerShape(16.dp),
                                 contentPadding = PaddingValues(16.dp)
                             ) {
-                                Text(
-                                    text = it,
-                                    fontSize = 20.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                Text(text = it, fontSize = 20.sp, fontWeight = FontWeight.Bold)
                             }
                         }
                     }
@@ -127,7 +126,8 @@ fun SurveyScreenThree(vm: OnBoardViewModel, onClick: () -> Unit) {
             )
         ) {
             Text(
-                text = "다음", fontSize = 20.sp, style = TextStyle(
+                text = "설문 종료",
+                fontSize = 20.sp, style = TextStyle(
                     platformStyle = PlatformTextStyle(
                         includeFontPadding = false
                     )

@@ -14,8 +14,10 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,9 +31,14 @@ import androidx.compose.ui.unit.sp
 import com.welldressedmen.nari.R
 
 @Composable
-fun SurveyScreenOne(onClick: () -> Unit) {
-    val clicked1 = remember { mutableStateOf(false) }
-    val clicked2 = remember { mutableStateOf(false) }
+fun SurveyScreenOne(vm: OnBoardViewModel, onClick: () -> Unit) {
+
+    val answer = arrayOf(
+        "남성",
+        "여성"
+    )
+    var select: String by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -44,16 +51,20 @@ fun SurveyScreenOne(onClick: () -> Unit) {
             //    .background(Color.Cyan)
             , contentAlignment = Alignment.Center
         ) {
-            Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                Box(modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-                //    .background(Color.Magenta)
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                    //    .background(Color.Magenta)
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth(),
-                         //   .background(Color.LightGray),
+                        //   .background(Color.LightGray),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
@@ -72,33 +83,23 @@ fun SurveyScreenOne(onClick: () -> Unit) {
                 }
                 Box(modifier = Modifier.padding(bottom = 16.dp)) {
                     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        Button(
-                            onClick = { clicked1.value = !clicked1.value;
-                                if (clicked2.value) clicked2.value = false},
-                            colors = ButtonDefaults.buttonColors(
-                                if (clicked1.value) Color(0xFF42A0FB) else Color.White
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                            shape = RoundedCornerShape(16.dp),
-                            contentPadding = PaddingValues(24.dp)
-                        ) {
-                            Text(text = "여자", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                        }
-                        Button(
-                            onClick = { clicked2.value = !clicked2.value;
-                                if (clicked1.value) clicked1.value = false},
-                            colors = ButtonDefaults.buttonColors(
-                                if (clicked2.value) Color(0xFF42A0FB) else Color.White
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp),
-                            shape = RoundedCornerShape(16.dp),
-                            contentPadding = PaddingValues(24.dp)
-                        ) {
-                            Text(text = "남자", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                        answer.forEach {
+                            Button(
+                                onClick = {
+                                    select = it
+                                    vm.userSex = select
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    if (select == it) Color(0xFF42A0FB) else Color.White
+                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp),
+                                shape = RoundedCornerShape(16.dp),
+                                contentPadding = PaddingValues(24.dp)
+                            ) {
+                                Text(text = it, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            }
                         }
                     }
                 }
@@ -118,11 +119,12 @@ fun SurveyScreenOne(onClick: () -> Unit) {
             )
         ) {
             Text(
-                text = "다음", fontSize = 20.sp, style = TextStyle(
+                text = "다음", fontSize = 20.sp,
+                style = TextStyle(
                     platformStyle = PlatformTextStyle(
                         includeFontPadding = false
                     )
-                )
+                ),
             )
         }
     }

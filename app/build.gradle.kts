@@ -104,6 +104,9 @@ dependencies {
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     implementation ("com.opencsv:opencsv:5.6")
+
+    implementation ("com.github.bumptech.glide:compose:1.0.0-beta01")
+
 }
 
 kapt {

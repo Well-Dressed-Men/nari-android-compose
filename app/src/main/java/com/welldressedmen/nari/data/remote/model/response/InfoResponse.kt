@@ -3,12 +3,14 @@ package com.welldressedmen.nari.data.remote.model.response
 import com.google.gson.annotations.SerializedName
 
 data class InfoResponse(
-    @SerializedName("weatherResponse")
+    @SerializedName("weatherInfo")
     val weatherResponse: WeatherResponse,
     @SerializedName("version")
     val version: String,
     @SerializedName("message")
-    val message: String
+    val message: String,
+    @SerializedName("fashionInfo")
+    val fashionInfo: FashionInfo
 )
 
 data class WeatherResponse(
@@ -108,3 +110,7 @@ data class WeatherAP(
     val pm25Value: Int
 )
 
+data class FashionInfo(
+    @SerializedName("fashionStr")
+    val fashionStr: List<String>
+)

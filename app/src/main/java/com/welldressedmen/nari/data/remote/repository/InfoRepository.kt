@@ -1,6 +1,7 @@
 package com.welldressedmen.nari.data.remote.repository
 
 import com.welldressedmen.nari.data.remote.api.ApiService
+import com.welldressedmen.nari.preferences.UserPreferences
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
 
@@ -17,5 +18,5 @@ class InfoRepository @Inject constructor(
         midLandCode: String,
         stationName: String,
         ver: String,
-    ) = apiService.getTotalInfo(regionId, nx, ny, midTempCode, midLandCode, stationName, ver)
+    ) = apiService.getTotalInfo("Bearer " + UserPreferences.userId, regionId, nx, ny, midTempCode, midLandCode, stationName, ver)
 }

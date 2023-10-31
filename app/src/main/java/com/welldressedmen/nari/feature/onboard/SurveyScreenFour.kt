@@ -31,15 +31,12 @@ import androidx.compose.ui.unit.sp
 import com.welldressedmen.nari.R
 
 @Composable
-fun SurveyScreenThree(vm: OnBoardViewModel, onClick: () -> Unit) {
+fun SurveyScreenFour(vm: OnBoardViewModel, onClick: () -> Unit) {
 
-    val answer = arrayOf(
-        "매우 그렇지 않다",
-        "그렇지 않다",
-        "보통이다",
-        "그렇다",
-        "매우 그렇다"
-    )
+    val answer = if (vm.userSex == "남성")
+        arrayOf("마른", "보통", "통통", "근육있는")
+    else
+        arrayOf("마른", "보통", "통통", "볼륨있는")
 
     var select: String by remember { mutableStateOf("") }
 
@@ -72,7 +69,7 @@ fun SurveyScreenThree(vm: OnBoardViewModel, onClick: () -> Unit) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "더위를 많이 타시나요?",
+                            text = "체형이 어떻게 되나요?",
                             fontSize = 25.sp,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center
@@ -91,7 +88,7 @@ fun SurveyScreenThree(vm: OnBoardViewModel, onClick: () -> Unit) {
                             Button(
                                 onClick = {
                                     select = it
-                                    vm.userHot = it
+                                    vm.userBody = it
                                 },
                                 colors = ButtonDefaults.buttonColors(
                                     if (select == it) Color(0xFF42A0FB) else Color.White
@@ -102,11 +99,7 @@ fun SurveyScreenThree(vm: OnBoardViewModel, onClick: () -> Unit) {
                                 shape = RoundedCornerShape(16.dp),
                                 contentPadding = PaddingValues(16.dp)
                             ) {
-                                Text(
-                                    text = it,
-                                    fontSize = 20.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                Text(text = it, fontSize = 20.sp, fontWeight = FontWeight.Bold)
                             }
                         }
                     }
