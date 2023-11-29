@@ -3,7 +3,7 @@ package com.welldressedmen.nari.data.remote.repository
 import android.util.Log
 import com.welldressedmen.nari.data.remote.api.ApiService
 import com.welldressedmen.nari.data.remote.model.response.UserInfoResponse
-import com.welldressedmen.nari.preferences.UserPreferences
+import com.welldressedmen.nari.data.db.preferences.UserPreferences
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody

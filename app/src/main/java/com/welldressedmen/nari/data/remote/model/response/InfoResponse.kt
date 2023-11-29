@@ -40,7 +40,7 @@ data class WeatherUltraShort(
     @SerializedName("sky")
     val sky: Int
 ) {
-    fun getTemp(): String = temp.toString().dropLast(1) + "°"
+    fun getTemp(): String = if (temp != 0) temp.toString().dropLast(1) + "°" else "$temp°"
     fun getSky(): String {
         if (sky < 10) {
             return when (sky) {

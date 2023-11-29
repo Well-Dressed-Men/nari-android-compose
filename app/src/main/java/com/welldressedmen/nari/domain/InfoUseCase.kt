@@ -4,7 +4,7 @@ import android.util.Log
 import com.welldressedmen.nari.data.remote.common.Resource
 import com.welldressedmen.nari.data.remote.model.response.InfoResponse
 import com.welldressedmen.nari.data.remote.repository.InfoRepository
-import com.welldressedmen.nari.preferences.LocationPreferences
+import com.welldressedmen.nari.data.db.preferences.LocationPreferences
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

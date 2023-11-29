@@ -20,7 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.opencsv.CSVReader
 import com.opencsv.exceptions.CsvException
-import com.welldressedmen.nari.preferences.LocationPreferences
+import com.welldressedmen.nari.data.db.preferences.LocationPreferences
 import java.io.IOException
 import java.io.InputStreamReader
 

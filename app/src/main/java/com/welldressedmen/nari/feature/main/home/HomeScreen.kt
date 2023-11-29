@@ -35,7 +35,9 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -54,7 +56,8 @@ import com.welldressedmen.nari.R
 import com.welldressedmen.nari.data.remote.model.response.InfoResponse
 import com.welldressedmen.nari.feature.common.LoadingBar
 import com.welldressedmen.nari.feature.common.ShowToast
-import com.welldressedmen.nari.preferences.LocationPreferences
+import com.welldressedmen.nari.data.db.preferences.LocationPreferences
+import com.welldressedmen.nari.ui.theme.md_theme_light_surface
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -79,7 +82,14 @@ fun HomeScreen(vm: HomeViewModel = hiltViewModel()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colorScheme.background)
+            .background(
+                brush = Brush.verticalGradient(
+                    listOf(
+                        md_theme_light_surface,
+                        Color(0x448dccff)
+                    )
+                )
+            )
     ) {
         // Top App Bar
         HomeScreenTopAppBar(location)
@@ -278,6 +288,8 @@ fun HomeScreenUI(data: InfoResponse) {
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(8.dp)
+                    .clip(shape = RoundedCornerShape(16.dp))
                     .aspectRatio(1f)
                     .clickable { index += 1 },
                 contentScale = ContentScale.FillWidth
@@ -327,7 +339,7 @@ fun HomeScreenUI(data: InfoResponse) {
                                     .width(24.dp)
                             )
                             Text(
-                                text = "${it.temp.toString().dropLast(1)}°",
+                                text = "${if (it.temp != 0) it.temp.toString().dropLast(1) else it.temp}°",
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold)
                             )
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -475,11 +487,11 @@ fun HomeScreenUI(data: InfoResponse) {
                                     .scale(1.5f)
                             )
                             Text(
-                                text = it.tempHighest.toString().dropLast(1),
+                                text = if (it.tempHighest != 0) it.tempHighest.toString().dropLast(1) + "°" else it.tempHighest.toString() + "°",
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W600)
                             )
                             Text(
-                                text = it.tempLowest.toString().dropLast(1),
+                                text = if (it.tempLowest != 0) it.tempLowest.toString().dropLast(1) + "°" else it.tempLowest.toString() + "°",
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W600)
                             )
                         }

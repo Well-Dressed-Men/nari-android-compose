@@ -1,7 +1,7 @@
 package com.welldressedmen.nari.data.remote.repository
 
 import com.welldressedmen.nari.data.remote.api.ApiService
-import com.welldressedmen.nari.preferences.UserPreferences
+import com.welldressedmen.nari.data.db.preferences.UserPreferences
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
 

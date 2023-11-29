@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,8 +29,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.welldressedmen.nari.R
+import com.welldressedmen.nari.data.db.preferences.UserPreferences
 import com.welldressedmen.nari.feature.onboard.OnBoardActivity
-import com.welldressedmen.nari.preferences.UserPreferences
 
 @Composable
 fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
@@ -78,7 +77,7 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                 when (state) {
                     is UserUiStateReady -> {
                         UserPreferences.userId = state.user!!.jwtToken
-                        Text(state.user!!.jwtToken)
+//                        Text(state.user!!.jwtToken)
                         Log.d("LoginScreen", "s ${state.user?.jwtToken}")
                         val intent = Intent(context, OnBoardActivity::class.java)
                         context.startActivity(intent)

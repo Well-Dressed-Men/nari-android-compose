@@ -35,9 +35,10 @@ fun SurveyScreenFive(vm: OnBoardViewModel, onClick: () -> Unit) {
 
     val context = LocalContext.current
 
-    val answer = arrayOf(
-        "캐주얼", "스트릿", "미니멀", "클래식/오피스룩", "큐티/러블리", "모던시크", "키치"
-    )
+    val answer = if (vm.userSex == "남성")
+        arrayOf("캐주얼", "스트릿", "미니멀", "클래식/오피스룩")
+    else
+        arrayOf("캐주얼", "큐티/러블리", "클래식/오피스룩", "모던시크", "미니멀", "키치", "스트릿")
 
     var select = remember { mutableStateMapOf<String, Boolean>() }
 
@@ -93,8 +94,12 @@ fun SurveyScreenFive(vm: OnBoardViewModel, onClick: () -> Unit) {
                                     } else {
                                         select[it] = !select[it]!!
                                     }
-                                    vm.userPreferences = select.filter { it.value }.keys.joinToString(" ")
-                                    Log.d("SurveyScreenFive", "vm.userPreferences: ${vm.userPreferences}")
+                                    vm.userPreferences =
+                                        select.filter { it.value }.keys.joinToString(" ")
+                                    Log.d(
+                                        "SurveyScreenFive",
+                                        "vm.userPreferences: ${vm.userPreferences}"
+                                    )
                                 },
                                 colors = ButtonDefaults.buttonColors(
                                     if (select[it] != null && select[it]!!) Color(0xFF42A0FB) else Color.White

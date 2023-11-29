@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.welldressedmen.nari.data.remote.common.Resource
 import com.welldressedmen.nari.data.remote.model.response.LoginResponse
 import com.welldressedmen.nari.domain.UserUseCase
-import com.welldressedmen.nari.preferences.UserPreferences
+import com.welldressedmen.nari.data.db.preferences.UserPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
